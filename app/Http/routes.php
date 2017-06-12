@@ -25,8 +25,25 @@ Route::post('/signin', [
     'as' => 'signin'
 ]);
 
+Route::get('/logout', [
+    'uses' => 'UserController@getLogout',
+    'as' => 'logout'
+]);
+
+Route::get('/account', [
+    'uses' => 'UserController@getAccount',
+    'as' => 'account',
+    'middleware' => 'auth'
+]);
+
+Route::post('/updateaccount', [
+    'uses' => 'UserController@postSaveAccount',
+    'as' => 'account.save',
+    'middleware' => 'auth'
+]);
+
 Route::get('/dashboard', [
-    'uses' => 'UserController@getDashboard',
+    'uses' => 'PostController@getDashboard',
     'as' => 'dashboard',
     'middleware' => 'auth'
 ]);
@@ -34,6 +51,18 @@ Route::get('/dashboard', [
 
 Route::post('/createpost', [
     'uses' => 'PostController@postCreatePost',
-    'as' => 'post.create'
+    'as' => 'post.create',
+    'middleware' => 'auth'
+]);
+
+Route::post('/edit', [
+    'uses' => 'PostController@postEditPost',
+    'as' => 'edit'
+]);
+
+Route::get('/delete-post/{post_uuid}', [
+    'uses' => 'PostController@getDeletePost',
+    'as' => 'post.delete',
+    'middleware' => 'auth'
 ]);
 

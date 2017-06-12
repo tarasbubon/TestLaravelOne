@@ -8,10 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function getDashboard()
-    {
-        return view('dashboard');
-    }
 
     public function postSignUp(Request $request)
     {
@@ -50,5 +46,17 @@ class UserController extends Controller
         }
 
         return redirect()->back()->withErrors(['loginError' => 'Email or Password is Incorrect']);
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+
+        return redirect()->route('home');
+    }
+
+    public function getAccount()
+    {
+        return view('account', ['user' => Auth::user()]);
     }
 }
