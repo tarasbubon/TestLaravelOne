@@ -42,6 +42,12 @@ Route::post('/updateaccount', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/userimage/{filename}', [
+    'uses' => 'UserController@getUserImage',
+    'as' => 'account.image',
+    'middleware' => 'auth'
+]);
+
 Route::get('/dashboard', [
     'uses' => 'PostController@getDashboard',
     'as' => 'dashboard',
@@ -63,6 +69,12 @@ Route::post('/edit', [
 Route::get('/delete-post/{post_uuid}', [
     'uses' => 'PostController@getDeletePost',
     'as' => 'post.delete',
+    'middleware' => 'auth'
+]);
+
+Route::post('/like', [
+    'uses' => 'PostController@postLikePost',
+    'as' => 'like',
     'middleware' => 'auth'
 ]);
 

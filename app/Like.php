@@ -4,7 +4,7 @@ namespace TestLaravelOne;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Like extends Model
 {
     use Uuids;
 
@@ -20,8 +20,8 @@ class Post extends Model
         return $this->belongsTo('TestLaravelOne\User');
     }
 
-    public function likes()
+    public function post()
     {
-        return $this->hasMany('TestLaravelOne\Like');
+        return $this->belongsTo('TestLaravelOne\Post');
     }
 }

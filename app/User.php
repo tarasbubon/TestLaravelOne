@@ -21,4 +21,9 @@ class User extends Model implements Authenticatable
     {
         return $this->hasMany('TestLaravelOne\Post');
     }
+
+    public function likes()
+    {
+        return $this->hasMany('TestLaravelOne\Like');
+    }
 }
